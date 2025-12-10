@@ -265,7 +265,7 @@
             border-bottom: 3px solid var(--secondary-color);
         }
 
-        .download-btn {
+        .download-btn, .listen-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -278,8 +278,16 @@
             transition: background 0.3s;
         }
         
-        .download-btn:hover {
+        .download-btn:hover, .listen-btn:hover {
             background: var(--accent-light);
+        }
+        
+        .listen-btn {
+            background: var(--primary-color);
+        }
+        
+        .listen-btn:hover {
+            background: var(--secondary-color);
         }
         
         /* FORMATION CARDS */
@@ -554,7 +562,8 @@
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
@@ -565,7 +574,8 @@
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--secondary-color);
         }
@@ -647,6 +657,12 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
             display: block;
+        }
+        
+        /* AUDIO PLAYER STYLES */
+        .audio-player {
+            width: 100%;
+            margin-top: 10px;
         }
         
         /* RESPONSIVE */
@@ -806,7 +822,7 @@
                 </div>
             </div>
             
-            <!-- Podcasts Section - NOUVELLES IMAGES -->
+            <!-- Podcasts Section - LIENS MIS À JOUR VERS LE DOSSIER SOUND -->
             <div style="margin-top: 80px;">
                 <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 30px; font-size: 1.8rem;">Podcasts</h3>
                 <div class="resources-grid">
@@ -820,8 +836,12 @@
                                 </div>
                             </div>
                             <p>Écoutez notre podcast sur les stratégies d'achat en immobilier équestre et devenez l'expert que vos clients recherchent.</p>
-                            <a href="#contact" class="download-btn">
-                                <i class="fas fa-play"></i> Demander l'accès
+                            <audio controls class="audio-player">
+                                <source src="./sound/Hectares-et-patrimoine-1-BIEN-ACHETER.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                            <a href="./sound/Hectares-et-patrimoine-1-BIEN-ACHETER.mp3" download class="listen-btn" style="margin-top: 10px;">
+                                <i class="fas fa-download"></i> Télécharger le podcast
                             </a>
                         </div>
                     </div>
@@ -836,8 +856,12 @@
                                 </div>
                             </div>
                             <p>Découvrez les techniques de vente spécifiques à l'immobilier équestre dans ce podcast exclusif.</p>
-                            <a href="#contact" class="download-btn">
-                                <i class="fas fa-play"></i> Demander l'accès
+                            <audio controls class="audio-player">
+                                <source src="./sound/Hectares-et-patrimoine-2-BIEN-VENDRE.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                            <a href="./sound/Hectares-et-patrimoine-2-BIEN-VENDRE.mp3" download class="listen-btn" style="margin-top: 10px;">
+                                <i class="fas fa-download"></i> Télécharger le podcast
                             </a>
                         </div>
                     </div>
@@ -852,8 +876,12 @@
                                 </div>
                             </div>
                             <p>Tout ce que vous devez savoir sur la SAFER dans ce podcast dédié aux aspects légaux de l'immobilier rural.</p>
-                            <a href="#contact" class="download-btn">
-                                <i class="fas fa-play"></i> Demander l'accès
+                            <audio controls class="audio-player">
+                                <source src="./sound/Hectares-et-patrimoine-3-COMPRENDRE-la-SAFER.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                            <a href="./sound/Hectares-et-patrimoine-3-COMPRENDRE-la-SAFER.mp3" download class="listen-btn" style="margin-top: 10px;">
+                                <i class="fas fa-download"></i> Télécharger le podcast
                             </a>
                         </div>
                     </div>
@@ -868,8 +896,12 @@
                                 </div>
                             </div>
                             <p>Apprenez à valoriser les propriétés équestres avec les conseils de nos experts dans ce podcast.</p>
-                            <a href="#contact" class="download-btn">
-                                <i class="fas fa-play"></i> Demander l'accès
+                            <audio controls class="audio-player">
+                                <source src="./sound/Hectares-et-patrimoine-4-Mettre-en-valeur-les-biens.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                            <a href="./sound/Hectares-et-patrimoine-4-Mettre-en-valeur-les-biens.mp3" download class="listen-btn" style="margin-top: 10px;">
+                                <i class="fas fa-download"></i> Télécharger le podcast
                             </a>
                         </div>
                     </div>
@@ -924,7 +956,7 @@
                             <i class="fas fa-play-circle"></i>
                         </div>
                         <div class="video-content">
-                            <h4>HECTARE et patrimoine - Comment va le marché?</h4>
+                            <h4>HECTARE et patrimoine - Comment va le marché ?</h4>
                             <p>Analyse du marché immobilier équestre : tendances, opportunités et perspectives pour votre activité de conseiller.</p>
                             <a href="https://www.youtube.com/shorts/CwFjW2CgQBk" target="_blank" rel="noopener noreferrer" class="watch-btn">
                                 <i class="fas fa-play"></i> Regarder
@@ -1032,13 +1064,13 @@
             </div>
             
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/delphine-grimault-a4a73b48/" target="_blank" rel="noopener noreferrer" class="social-link">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://www.instagram.com/hectaresetpatrimoine/" target="_blank" rel="noopener noreferrer" class="social-link">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-link">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.facebook.com/groups/hectaresetpatrimoine" target="_blank" rel="noopener noreferrer" class="social-link">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-link">
                     <i class="fab fa-facebook-f"></i>
                 </a>
             </div>
