@@ -65,9 +65,25 @@
             align-items: center;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-link {
+            display: inline-block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+        
         .logo-container img {
             max-width: 220px;
             height: auto;
+            cursor: pointer;
         }
         
         nav ul {
@@ -185,7 +201,7 @@
             font-size: 1.1rem;
         }
         
-        /* RESSOURCES GRATUITES - MODIFIÉ : disposition horizontale */
+        /* RESSOURCES GRATUITES */
         .resources-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -544,7 +560,7 @@
             color: var(--secondary-color);
         }
         
-        /* FORMULAIRE DE CONTACT - CORRIGÉ */
+        /* FORMULAIRE DE CONTACT - OPTIMISÉ AVEC FORMSPREE */
         .contact-form {
             margin-top: 30px;
             text-align: left;
@@ -586,7 +602,10 @@
         }
         
         .submit-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             width: 100%;
             background: var(--primary-color);
             color: white;
@@ -604,6 +623,11 @@
         
         .submit-btn:hover {
             background: var(--secondary-color);
+        }
+        
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
         }
         
         /* FOOTER */
@@ -640,9 +664,11 @@
             display: none;
             padding: 15px;
             margin-top: 20px;
+            margin-bottom: 15px;
             border-radius: 4px;
             text-align: center;
             font-weight: 500;
+            font-size: 1rem;
         }
         
         .form-feedback.success {
@@ -663,6 +689,41 @@
         .audio-player {
             width: 100%;
             margin-top: 10px;
+        }
+        
+        /* BOUTON RETOUR EN HAUT */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
         
         /* RESPONSIVE */
@@ -717,6 +778,14 @@
             .contact-info {
                 padding: 30px 20px;
             }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -725,7 +794,9 @@
     <header>
         <div class="container header-container">
             <div class="logo-container">
-                <img src="./img/HEP-Academy-logo.png" alt="Hectare et Patrimoine Academy">
+                <a href="#" class="logo-link" id="logo-top">
+                    <img src="./img/HEP-Academy-logo.png" alt="Hectare et Patrimoine Academy">
+                </a>
             </div>
             <nav>
                 <ul>
@@ -908,7 +979,7 @@
                 </div>
             </div>
             
-            <!-- Videos Section - DANS LA MÊME SECTION - LIENS YOUTUBE MIS À JOUR -->
+            <!-- Videos Section -->
             <div style="margin-top: 80px;">
                 <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 30px; font-size: 1.8rem;">Vidéos</h3>
                 <div class="videos-grid">
@@ -981,7 +1052,7 @@
         </div>
     </section>
     
-    <!-- Formations Section - IMAGES CORRIGÉES -->
+    <!-- Formations Section -->
     <section id="formations" class="section">
         <div class="container">
             <div class="section-title">
@@ -1077,7 +1148,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - FORMULAIRE CORRIGÉ -->
+    <!-- Contact Section - FORMULAIRE OPTIMISÉ AVEC FORMSPREE -->
     <section id="contact" class="section section-light">
         <div class="container">
             <div class="section-title">
@@ -1094,10 +1165,10 @@
                 </div>
                 <a href="tel:+33610461933" class="btn" style="margin-top: 25px; margin-bottom: 30px;">Appeler maintenant</a>
                 
-                <!-- Formulaire de contact SÉCURISÉ -->
+                <!-- Formulaire de contact OPTIMISÉ -->
                 <div class="contact-form">
                     <h4 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Ou envoyez-nous un message</h4>
-                    <form id="contactForm" method="POST">
+                    <form id="contactForm" action="https://formspree.io/f/mblznban" method="POST">
                         <div class="form-group">
                             <label for="prenom">Prénom *</label>
                             <input type="text" id="prenom" name="prenom" required>
@@ -1107,7 +1178,7 @@
                             <input type="text" id="nom" name="nom" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email *</label>
+                            <label for="email">Votre Email *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
@@ -1115,8 +1186,8 @@
                             <input type="tel" id="telephone" name="telephone">
                         </div>
                         <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Votre Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Décrivez-nous votre projet ou posez-nous vos questions..."></textarea>
                         </div>
                         <div class="form-group">
                             <label for="formation">Formation intéressée</label>
@@ -1125,11 +1196,21 @@
                                 <option value="essentiel">Formation Essentiel (500€ HT)</option>
                                 <option value="pro">Formation Pro (2 500€ HT)</option>
                                 <option value="premium">Formation Premium (3 500€ HT)</option>
-                                <option value="autre">Autre demande</option>
+                                <option value="autre">Autre demande / Renseignement</option>
                             </select>
                         </div>
+                        <!-- Champ caché pour la redirection après succès (optionnel) -->
+                        <input type="hidden" name="_next" value="https://votresite.com/merci.html">
+                        <!-- Désactive le reCAPTCHA de Formspree si vous en avez un autre -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
                         <div id="formFeedback" class="form-feedback"></div>
-                        <button type="submit" class="submit-btn">Envoyer mon message</button>
+                        <button type="submit" class="submit-btn">
+                            <span id="submitText">Envoyer mon message</span>
+                            <span id="loadingSpinner" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Envoi en cours...
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -1154,44 +1235,75 @@
         </div>
     </footer>
 
+    <!-- Bouton retour en haut -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
     <script>
-        // Gestion sécurisée du formulaire
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Gestion optimisée du formulaire avec Formspree
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Empêche le rechargement de page
             
-            // Récupération des données
-            const formData = {
-                prenom: document.getElementById('prenom').value,
-                nom: document.getElementById('nom').value,
-                email: document.getElementById('email').value,
-                telephone: document.getElementById('telephone').value,
-                message: document.getElementById('message').value,
-                formation: document.getElementById('formation').value
-            };
-            
-            // Validation simple
-            if (!formData.prenom || !formData.nom || !formData.email || !formData.message) {
-                showFeedback('Veuillez remplir tous les champs obligatoires.', 'error');
-                return;
-            }
-            
-            // Ici, normalement vous enverriez les données à un serveur
-            // Pour l'instant, on simule un envoi réussi
-            showFeedback('Votre message a été envoyé avec succès ! Nous vous contacterons rapidement.', 'success');
-            
-            // Réinitialisation du formulaire après 3 secondes
-            setTimeout(() => {
-                document.getElementById('contactForm').reset();
-                document.getElementById('formFeedback').classList.remove('success');
-                document.getElementById('formFeedback').textContent = '';
-            }, 3000);
-        });
-        
-        function showFeedback(message, type) {
+            const form = this;
+            const submitBtn = form.querySelector('.submit-btn');
+            const submitText = document.getElementById('submitText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
             const feedbackDiv = document.getElementById('formFeedback');
-            feedbackDiv.textContent = message;
-            feedbackDiv.className = 'form-feedback ' + type;
-        }
+            
+            // Affiche l'indicateur de chargement
+            submitText.style.display = 'none';
+            loadingSpinner.style.display = 'inline';
+            submitBtn.disabled = true;
+            feedbackDiv.textContent = '';
+            feedbackDiv.className = 'form-feedback';
+            
+            try {
+                // Récupère les données du formulaire
+                const formData = new FormData(form);
+                
+                // Envoie les données à Formspree
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Succès
+                    feedbackDiv.textContent = '✅ Message envoyé avec succès ! Delphine vous répondra très rapidement.';
+                    feedbackDiv.className = 'form-feedback success';
+                    
+                    // Réinitialise le formulaire après 3 secondes
+                    setTimeout(() => {
+                        form.reset();
+                        feedbackDiv.textContent = '';
+                        feedbackDiv.className = 'form-feedback';
+                    }, 3000);
+                } else {
+                    // Erreur de Formspree
+                    const error = await response.json();
+                    if (error.errors && error.errors.length > 0) {
+                        feedbackDiv.textContent = `❌ Erreur : ${error.errors.map(err => err.message).join(', ')}`;
+                    } else {
+                        feedbackDiv.textContent = '❌ Une erreur est survenue lors de l\'envoi. Veuillez réessayer.';
+                    }
+                    feedbackDiv.className = 'form-feedback error';
+                }
+            } catch (error) {
+                // Erreur réseau
+                feedbackDiv.textContent = '❌ Erreur de connexion. Vérifiez votre connexion internet et réessayez.';
+                feedbackDiv.className = 'form-feedback error';
+                console.error('Erreur:', error);
+            } finally {
+                // Réinitialise le bouton
+                submitText.style.display = 'inline';
+                loadingSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
         
         // Navigation fluide
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
@@ -1204,6 +1316,49 @@
                 if(targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Logo comme bouton retour en haut
+        document.getElementById('logo-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Gestion du bouton retour en haut flottant
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Afficher/masquer le bouton quand on scroll
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        // Retour en haut quand on clique sur le bouton flottant
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Retour en haut pour les liens #
+        document.querySelectorAll('a[href="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
                         behavior: 'smooth'
                     });
                 }
